@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Website for Shaula &mdash; Shaula 0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Shaula 0 documentation" href="#" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="website-for-shaula">
+<h1>Website for Shaula<a class="headerlink" href="#website-for-shaula" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This website aims to describe Shaula. It will enable voyages to be logged, documents to be uploaded and manuals to be uploaded. The log, documents and manuals will be editable. Editing the site will be restricted to password protected users.</p>
+</div>
+<div class="section" id="navigation">
+<h2>Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">¶</a></h2>
+<p>Home</p>
+<p>Login</p>
+<p>Voyage Log</p>
+<p>Manuals</p>
+<p>Documents (logged in only)</p>
+</div>
+<div class="section" id="views">
+<h2>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h2>
+<p>All views have website title, photo of Shaula and navigation</p>
+<div class="section" id="home">
+<h3>1 Home<a class="headerlink" href="#home" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>100 word intro, additional photo(s) of Shaula.</div></blockquote>
+</div>
+<div class="section" id="login-form-pop-up">
+<h3>2 Login (form (pop up?))<a class="headerlink" href="#login-form-pop-up" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Registration will be hardcoded.</p>
+<p>Links (all users): Reset password.</p>
+<p>User input: email, password</p>
+</div></blockquote>
+</div>
+<div class="section" id="list-of-log-entries">
+<h3>3 List of Log Entries<a class="headerlink" href="#list-of-log-entries" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>20 word description of voyage logs</p>
+<p>List of log entries in Desc order of departure time</p>
+<p>Links (all users): Log Entry (for each entry in the list)</p>
+<p>Links (logged in): Add Log Entry (once at top), Delete (for each list item. Return to list)</p>
+<p>DB input: n[id, depart_from, arrive_at, depart_time]</p>
+</div></blockquote>
+</div>
+<div class="section" id="log-entry">
+<h3>4 Log Entry<a class="headerlink" href="#log-entry" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Links (all users): return to List of Log Entries, next, previous (tricky to implement as ids may not be consequtive)</p>
+<p>Links (logged in): Delete (for every photo with description), Edit (once at top. To Add Log Entry with values)</p>
+<p>DB input:  id, depart_from, arrive_at, depart_time, description, n[file_n, photo_description_n]</p>
+</div></blockquote>
+</div>
+<div class="section" id="add-log-entry-form">
+<h3>5 Add Log Entry (form)<a class="headerlink" href="#add-log-entry-form" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>DB input: (for edit):  id, depart_from, arrive_at, depart_time, description</p>
+<p>User input: depart_from, arrive_at, depart_time, description, n[photo_file_UPLOAD, description]</p>
+</div></blockquote>
+</div>
+<div class="section" id="list-of-manuals">
+<h3>6 List of Manuals<a class="headerlink" href="#list-of-manuals" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Links (all users): Manual (for each list item)</p>
+<p>Links (logged in): Add Manual (once at top), Delete (for each list item. Return to list.)</p>
+<p>DB input:  id, title</p>
+</div></blockquote>
+</div>
+<div class="section" id="manual">
+<h3>7 Manual<a class="headerlink" href="#manual" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Links (all users): return to List of Manuals</p>
+<p>Links (logged in): Edit (once at top. To Add Manual with values)</p>
+<p>DB input: id, title, description, file</p>
+</div></blockquote>
+</div>
+<div class="section" id="add-manual-form">
+<h3>8 Add Manual (form)<a class="headerlink" href="#add-manual-form" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Dynamic (for edit): id, title, description</p>
+<p>User input: title, description, file_UPLOAD</p>
+</div></blockquote>
+</div>
+<div class="section" id="list-of-documents-logged-in-only">
+<h3>9 List of Documents (logged in only)<a class="headerlink" href="#list-of-documents-logged-in-only" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Links (logged in): Document (for each list item), Add Document (once at top), Delete (for each list item)</p>
+<p>DB input: id, title</p>
+</div></blockquote>
+</div>
+<div class="section" id="document">
+<h3>10 Document<a class="headerlink" href="#document" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>Links (logged in): return to List of Documents, edit (once at top. To Add Document with values)</p>
+<p>DB input: id, title, description, file</p>
+</div></blockquote>
+</div>
+<div class="section" id="add-document-form">
+<h3>11 Add Document (form)<a class="headerlink" href="#add-document-form" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>DB input: (for edit): id, title, description</p>
+<p>User input: title, description, file_UPLOAD</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="sqlite-database">
+<h2>SQLite Database<a class="headerlink" href="#sqlite-database" title="Permalink to this headline">¶</a></h2>
+<p>All fields should be Not Null (use defaults).</p>
+<div class="section" id="voyagelogs-table">
+<h3>voyageLogs table<a class="headerlink" href="#voyagelogs-table" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>id int, PK etc</p>
+<p>depart_from text, required</p>
+<p>arrive_at text, required</p>
+<p>depart_time ???, required</p>
+<p>description text, default: &#8220;&#8221;</p>
+</div></blockquote>
+</div>
+<div class="section" id="photos-table">
+<h3>photos table<a class="headerlink" href="#photos-table" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>id int, PK etc</p>
+<p>file_name text, required</p>
+</div></blockquote>
+</div>
+<div class="section" id="voyagelogs-photos-table">
+<h3>voyageLogs_photos table<a class="headerlink" href="#voyagelogs-photos-table" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>voyageLogs_id int, FK, required</p>
+<p>photos_id int, FK, required</p>
+<p>description text, default: &#8220;&#8221;</p>
+</div></blockquote>
+</div>
+<div class="section" id="manuals-table">
+<h3>manuals table<a class="headerlink" href="#manuals-table" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>id int, PK etc</p>
+<p>title text, required</p>
+<p>description text, default: &#8220;&#8221;</p>
+<p>file_name text, default: &#8220;&#8221;</p>
+</div></blockquote>
+</div>
+<div class="section" id="documents-table">
+<h3>documents table<a class="headerlink" href="#documents-table" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>id int, PK etc</p>
+<p>title text, required</p>
+<p>description text, default: &#8220;&#8221;</p>
+<p>file_name text, default: &#8220;&#8221;</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Website for Shaula</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#navigation">Navigation</a></li>
+<li><a class="reference internal" href="#views">Views</a><ul>
+<li><a class="reference internal" href="#home">1 Home</a></li>
+<li><a class="reference internal" href="#login-form-pop-up">2 Login (form (pop up?))</a></li>
+<li><a class="reference internal" href="#list-of-log-entries">3 List of Log Entries</a></li>
+<li><a class="reference internal" href="#log-entry">4 Log Entry</a></li>
+<li><a class="reference internal" href="#add-log-entry-form">5 Add Log Entry (form)</a></li>
+<li><a class="reference internal" href="#list-of-manuals">6 List of Manuals</a></li>
+<li><a class="reference internal" href="#manual">7 Manual</a></li>
+<li><a class="reference internal" href="#add-manual-form">8 Add Manual (form)</a></li>
+<li><a class="reference internal" href="#list-of-documents-logged-in-only">9 List of Documents (logged in only)</a></li>
+<li><a class="reference internal" href="#document">10 Document</a></li>
+<li><a class="reference internal" href="#add-document-form">11 Add Document (form)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sqlite-database">SQLite Database</a><ul>
+<li><a class="reference internal" href="#voyagelogs-table">voyageLogs table</a></li>
+<li><a class="reference internal" href="#photos-table">photos table</a></li>
+<li><a class="reference internal" href="#voyagelogs-photos-table">voyageLogs_photos table</a></li>
+<li><a class="reference internal" href="#manuals-table">manuals table</a></li>
+<li><a class="reference internal" href="#documents-table">documents table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Steve Greig.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/index.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
