@@ -16,6 +16,10 @@ Overview
 
 This website aims to describe Shaula. It will enable voyages to be logged, documents to be uploaded and manuals to be uploaded. The log, documents and manuals will be editable. Editing the site will be restricted to password protected users.
 
+The controllers are written directly into the routes definitions in the routes directory.
+
+Create and update operations should use the same pug files eg. views/voyages/create-update.pug and also the same routes and controllers eg router.post('/create-update', HANDLER) in routes/voyages.js. The form action attribut in the pug file should be made to do this.
+
 
 Navigation
 ----------
@@ -39,10 +43,14 @@ All views have website title, photo of Shaula and navigation
 1 Home
 ......
 
+  /
+
   100 word intro, additional photo(s) of Shaula.
 
 2 Login (form (pop up?))
 ........................
+
+  /login
 
   Registration will be hardcoded.
 
@@ -52,6 +60,8 @@ All views have website title, photo of Shaula and navigation
 
 3 List of Log Entries
 .....................
+
+  /voyages
 
   20 word description of voyage logs
 
@@ -66,6 +76,8 @@ All views have website title, photo of Shaula and navigation
 4 Log Entry
 ...........
 
+  /voyages/date_time_departure
+
   Links (all users): return to List of Log Entries, next, previous (tricky to implement as ids may not be consequtive)
 
   Links (logged in): Delete (for every photo with description), Edit (once at top. To Add Log Entry with values)
@@ -75,12 +87,16 @@ All views have website title, photo of Shaula and navigation
 5 Add Log Entry (form)
 ......................
 
+  /voyages/create
+
   DB input: (for edit):  id, depart_from, arrive_at, depart_time, description
 
   User input: depart_from, arrive_at, depart_time, description, n[photo_file_UPLOAD, description] 
 
 6 List of Manuals
 .................
+
+  /manuals
 
   Links (all users): Manual (for each list item)
 
@@ -91,6 +107,8 @@ All views have website title, photo of Shaula and navigation
 7 Manual
 ........
 
+  /manuals/name
+
   Links (all users): return to List of Manuals
 
   Links (logged in): Edit (once at top. To Add Manual with values)
@@ -100,12 +118,16 @@ All views have website title, photo of Shaula and navigation
 8 Add Manual (form)
 ...................
 
+  /manuals/create
+
   Dynamic (for edit): id, title, description
 
   User input: title, description, file_UPLOAD
 
 9 List of Documents (logged in only)
 ....................................
+
+  /documents
 
   Links (logged in): Document (for each list item), Add Document (once at top), Delete (for each list item)
 
@@ -114,12 +136,16 @@ All views have website title, photo of Shaula and navigation
 10 Document
 ...........
 
+  /documents/name
+
   Links (logged in): return to List of Documents, edit (once at top. To Add Document with values)
 
   DB input: id, title, description, file
 
 11 Add Document (form)
 ......................
+
+  /documents/create
 
   DB input: (for edit): id, title, description
 
