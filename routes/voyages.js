@@ -1,45 +1,51 @@
 var express = require('express');
 var router = express.Router();
 
+// Require controller modules
+var voyages = require('../controllers/voyages');
+
 // GET request for creating a voyage
 router.get('/create',
 	function(req, res){
-		res.send('Will display form for creating / updating the log of a voyage. The fields will be empty or have placeholders but values will be empty');
+		// any code? or just render form
+		res.render('./voyages/create-update.pug');
 	}
 );
 
-// POST request for creating a voyage
-router.post('/create',
-	function(req, res){
-		res.send('this will not be a visible page. It is the script for creating / updating a voyage. After success it shoud redirect to that voyage');
-	}
-);
+// POST request for creating a voyage. Same controller as for updating a voyage.
+router.post('/create', voyages.create_update);
 
 // GET request for deleting a voyage
 router.get('/:depart_time/delete',
 	function(req, res){
-		res.send('this will not be a visible page. It is the script for deleting a voyage. After success it should redirect to the list of voyages');
+		// Use req.params.depart_time to make SQL query to delete that voyage. Redirect to list of voyages
+		res.redirect('/voyages');
 	}
 );
 
 // GET request for updating a voyage
 router.get('/:depart_time/update',
 	function(req, res){
-		res.send('Will display form for creating / updating the log of a voyage. The form will be populated with values for the voyage to be updated');
+		// Use req.params.depart_time to make SQL query to populate form with values.
+		res.render('./voyages/create-update.pug');
 	}
 );
 
-// POST request for updating a voyage. Maybe be not needed. Use POST request for creating a voyage....
-router.post('/create',
-	function(req, res){
-		res.send('this will not be a visible page. It is the script for creating / updating a voyage. After success it should redirect to that voyage');
-	}
-);
+// POST request for updating a voyage. Same controller as for creating a voyage.
+router.post('/:depart_time/update', voyages.create_update);
 
 // GET request for list of all voyages
 router.get('/', 
 	function(req, res){
-		res.send('List of all voyages. Each voyage links to detail page for voyage');
+		res.render('./voyages/list.pug');
+	}
+);
+
+// GET request to view a voyage in detail
+router.get('/:depart_time',
+	function(req, res){
+		// Use req.params.depart_time to query details of a voyage and send to pug
+		res.render('./voyages/detail.pug');
 	}
 );
 

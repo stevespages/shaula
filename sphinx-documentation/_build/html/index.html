@@ -202,6 +202,135 @@
 </div></blockquote>
 </div>
 </div>
+<div class="section" id="routes-controllers-views">
+<h2>Routes, Controllers, Views<a class="headerlink" href="#routes-controllers-views" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>/<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="home-page">
+<h4>Home Page<a class="headerlink" href="#home-page" title="Permalink to this headline">¶</a></h4>
+<p><cite>views/index.pug</cite></p>
+<p>Shows home page with approx 100 word description of Shaula and the web site. Could have additional photos (all pages will have a photo of Shaula as a header)</p>
+<p>Has a link to login (all users) Dialogue box will appear using javascript so email and password can be entered. On submit redirect to home page with success or failure message?#~!!&amp;^</p>
+</div>
+<div class="section" id="table">
+<h4>Table<a class="headerlink" href="#table" title="Permalink to this headline">¶</a></h4>
+<p>route prefix is <cite>/</cite></p>
+<p>route is in <cite>routes/index.js</cite></p>
+<p>controller is in the route definition</p>
+<p>view is <cite>views/index.pug</cite></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="21%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">/</th>
+<th class="head">&nbsp;</th>
+<th class="head">/views/</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GET  /</td>
+<td>in route</td>
+<td>/index.pug</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="voyages">
+<h3>/voyages<a class="headerlink" href="#voyages" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="list-of-voyages">
+<h4>List of voyages<a class="headerlink" href="#list-of-voyages" title="Permalink to this headline">¶</a></h4>
+<p><cite>views/voyages/list.pug</cite></p>
+<p>Shows list of all voyages in descending order of depart_time (unique in database).</p>
+<p>Each voyage in the list links to that voyage detail page (all users)</p>
+<p>Each voyage in the list has a link to delete and (logged in users)</p>
+<p>data: n[depart_from, arrive_at, depart_time]</p>
+</div>
+<div class="section" id="voyage-detail-page">
+<h4>Voyage Detail Page<a class="headerlink" href="#voyage-detail-page" title="Permalink to this headline">¶</a></h4>
+<p><cite>views/voyages/detail.pug</cite></p>
+<p>Shows detail for a voyage.</p>
+<p>Has a edit photos icon. On clicking all photos + description have a delete link (logged in users)</p>
+<p>Has a edit icon. On clicking presents create-update.pug page with values in input fields (logged in users)</p>
+<p>data: depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]</p>
+</div>
+<div class="section" id="create-and-update-voyage">
+<h4>Create and Update Voyage<a class="headerlink" href="#create-and-update-voyage" title="Permalink to this headline">¶</a></h4>
+<p><cite>views/voyages/create-update.pug</cite></p>
+<p>Shows form for creating a voyage detail page.</p>
+<p>fields for user entry or data from db:</p>
+<p>depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]</p>
+</div>
+<div class="section" id="id2">
+<h4>Table<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>routes prefix is <cite>voyages/</cite></p>
+<p>routes are in <cite>routes/voyages.js</cite></p>
+<p>controller prefix (object) is <cite>voyages.</cite></p>
+<p>controllers are in <cite>controllers/voyages.js</cite></p>
+<p><cite>in route</cite> means the controller is defined in <cite>routes/voyages</cite></p>
+<p>views are in <cite>views/voyages/</cite></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="21%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">/voyages</th>
+<th class="head">voyages.</th>
+<th class="head">/views/voyages</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>GET  /create</td>
+<td>in route</td>
+<td>/create-update.pug</td>
+</tr>
+<tr class="row-odd"><td>POST /create</td>
+<td>.create-update</td>
+<td>REDIR: /voyages/:depart_time</td>
+</tr>
+<tr class="row-even"><td>GET  /:depart_time/delete</td>
+<td>in route</td>
+<td>REDIR: /voyages</td>
+</tr>
+<tr class="row-odd"><td>GET  /:depart_time/update</td>
+<td>in route</td>
+<td>/create-update.pug</td>
+</tr>
+<tr class="row-even"><td>POST /:depart_time/update</td>
+<td>.create-update</td>
+<td>REDIR: /voyages/:depart_time</td>
+</tr>
+<tr class="row-odd"><td>GET  /</td>
+<td>in route</td>
+<td>/list.pug</td>
+</tr>
+<tr class="row-even"><td>GET  /:depart_time</td>
+<td>in route</td>
+<td>/detail.pug</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="to-do">
+<h2>To Do<a class="headerlink" href="#to-do" title="Permalink to this headline">¶</a></h2>
+<p>Complete sections on <cite>manuals</cite> and <cite>documents</cite> after implementing the <cite>voyages</cite> section</p>
+<div class="section" id="manuals">
+<h3>/manuals<a class="headerlink" href="#manuals" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h4>List of Manuals<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p><cite>views/manuals/list.pug</cite></p>
+<p>Shows list of manuals in alphabetical order.</p>
+<p>Each item in list links to detail page for manual&#8217;</p>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -243,6 +372,28 @@
 <li><a class="reference internal" href="#voyagelogs-photos-table">voyageLogs_photos table</a></li>
 <li><a class="reference internal" href="#manuals-table">manuals table</a></li>
 <li><a class="reference internal" href="#documents-table">documents table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#routes-controllers-views">Routes, Controllers, Views</a><ul>
+<li><a class="reference internal" href="#id1">/</a><ul>
+<li><a class="reference internal" href="#home-page">Home Page</a></li>
+<li><a class="reference internal" href="#table">Table</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#voyages">/voyages</a><ul>
+<li><a class="reference internal" href="#list-of-voyages">List of voyages</a></li>
+<li><a class="reference internal" href="#voyage-detail-page">Voyage Detail Page</a></li>
+<li><a class="reference internal" href="#create-and-update-voyage">Create and Update Voyage</a></li>
+<li><a class="reference internal" href="#id2">Table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#to-do">To Do</a><ul>
+<li><a class="reference internal" href="#manuals">/manuals</a><ul>
+<li><a class="reference internal" href="#id3">List of Manuals</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

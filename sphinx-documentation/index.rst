@@ -208,6 +208,126 @@ documents table
   
   file_name text, default: ""
 
+Routes, Controllers, Views
+--------------------------
+
+/
+.
+
+Home Page
+,,,,,,,,,
+
+`views/index.pug`
+
+Shows home page with approx 100 word description of Shaula and the web site. Could have additional photos (all pages will have a photo of Shaula as a header)
+
+Has a link to login (all users) Dialogue box will appear using javascript so email and password can be entered. On submit redirect to home page with success or failure message?#~!!&^
+
+Table
+,,,,,
+
+route prefix is `/`
+
+route is in `routes/index.js`
+
+controller is in the route definition
+
+view is `views/index.pug`
+
+
+=========================         ==============  ============================
+/                                                 /views/
+=========================         ==============  ============================
+GET  /                            in route        /index.pug
+=========================         ==============  ============================
+
+/voyages
+........
+
+List of voyages
+,,,,,,,,,,,,,,,
+
+`views/voyages/list.pug`
+
+Shows list of all voyages in descending order of depart_time (unique in database).
+
+Each voyage in the list links to that voyage detail page (all users)
+
+Each voyage in the list has a link to delete and (logged in users)
+
+data: n[depart_from, arrive_at, depart_time]
+
+Voyage Detail Page
+,,,,,,,,,,,,,,,,,,,,,,,
+
+`views/voyages/detail.pug`
+
+Shows detail for a voyage.
+
+Has a edit photos icon. On clicking all photos + description have a delete link (logged in users)
+
+Has a edit icon. On clicking presents create-update.pug page with values in input fields (logged in users)
+
+data: depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]
+
+Create and Update Voyage
+,,,,,,,,,,,,,,,,,,,,,,,,
+
+`views/voyages/create-update.pug`
+
+Shows form for creating a voyage detail page.
+
+fields for user entry or data from db:
+
+depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]
+
+Table
+,,,,,
+
+routes prefix is `voyages/`
+
+routes are in `routes/voyages.js`
+
+controller prefix (object) is `voyages.`
+
+controllers are in `controllers/voyages.js`
+
+`in route` means the controller is defined in `routes/voyages`
+
+views are in `views/voyages/`
+
+
+=========================         ==============  ============================
+/voyages                          voyages.        /views/voyages
+=========================         ==============  ============================
+GET  /create                      in route        /create-update.pug
+POST /create                      .create-update  REDIR: /voyages/:depart_time
+GET  /:depart_time/delete         in route        REDIR: /voyages
+GET  /:depart_time/update         in route        /create-update.pug
+POST /:depart_time/update         .create-update  REDIR: /voyages/:depart_time
+GET  /                            in route        /list.pug
+GET  /:depart_time                in route        /detail.pug
+=========================         ==============  ============================
+
+To Do
+-----
+
+Complete sections on `manuals` and `documents` after implementing the `voyages` section
+
+/manuals
+........
+
+List of Manuals
+,,,,,,,,,,,,,,,
+
+`views/manuals/list.pug`
+
+Shows list of manuals in alphabetical order.
+
+Each item in list links to detail page for manual'
+
+
+
 Indices and tables
 ==================
 
