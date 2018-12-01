@@ -3,5 +3,12 @@ extends ../layout
 block content
 
   h1 List of Voyages
+
+  a(href='/voyages/create') Create Voyage
   
-  P ...
+  //- P #{data[0].depart_from}
+
+  ul
+    each voyage in voyages
+      li
+        a(href='/voyages/' + voyage.id) #{voyage.depart_from} to #{voyage.arrive_at}. #{voyage.depart_time}

@@ -4,4 +4,18 @@ block content
 
   h1 Form to Create Voyage
 
-  p ...
+  form(method='POST' action='')
+    div.form-group
+      label(for='depart_from') Depart From:
+      input#depart_from.form-control(type='text', placeholder='Depart From' name='depart_from' required='true')
+      label(for='arrive_at') Arrive At:
+      input#arrive_at.form-control(type='text', placeholder='Arrive At' name='arrive_at' required='true')
+      label(for='depart_time') Depart Time:
+      input#depart_time.form-control(type='text', placeholder='YYYY-MM-DD hh:mm' name='depart_time' required='true')
+      label(for='arrive_time') Arrive Time:
+      input#arrive_time.form-control(type='text', placeholder='YYYY-MM-DD hh:mm' name='arrive_time')
+      label(for='distance') Distance (nautical miles):
+      input#arrive_time.form-control(type='number', name='distance')
+      label(for='description') Description:
+      input#description.form-control(textarea name='description')
+      button.btn.btn-primary(type='submit') Submit

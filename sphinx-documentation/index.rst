@@ -157,37 +157,95 @@ SQLite Database
 
 All fields should be Not Null (use defaults).
 
-voyageLogs table
+voyages table
 ................
+  CREATE TABLE voyages (
 
-  id int, PK etc
-  
-  depart_from text, required
-  
-  arrive_at text, required
-  
-  depart_time ???, required
-  
-  description text, default: ""
+  id INTEGER PRIMARY KEY,
+
+  depart_from TEXT NOT NULL,
+
+  arrive_at TEXT NOT NULL,
+
+  depart_time TEXT NOT NULL,
+
+  arrive_time TEXT DEFAULT "",
+
+  distance INTEGER,
+
+  description TEXT DEFAULT ""
+
+  );
+
+  Note: dates should be inserted as: YYYY-MM-DD HH:MM
+
+  INSERT INTO voyages (
+
+    depart_from, arrive_at, depart_time, arrive_time, distance, description
+
+    )
+
+  VALUES
+
+    (
+      "Old Mill Creek, River Dart",
+
+      "Mount Edgecombe, Pylmouth",
+
+      "2016-07-21 08:00",
+
+      "2016-07-21 20:00",
+
+      35,
+
+      "Motored all the way with light head winds. Anchored. Got in a muddle anchoring much to the annoyance of fisherman on the shore who I got rather close to...."
+
+    )
+
+    (
+
+      "Mount Edgecombe, Plymouth",
+
+      "Portscatho",
+
+      "2016-07-22 11:00",
+
+      "2016-07-22 20:00",
+
+      35,
+
+      "Motored all the way with roller reefing jib out. Anchored"
+
+    );
 
 photos table
 ............
 
-  id int, PK etc
-  
-  file_name text, required
+  CREATE TABLE photos (
 
-voyageLogs_photos table
+  id INTEGER PRIMARY KEY,
+  
+  file_name TEXT NOT NULL
+
+  );
+
+voyages_photos table
 .......................
 
-  voyageLogs_id int, FK, required
+  CREATE TABLE voyages_photos (
+
+  FOREIGN KEY(voyages_id) REFERENCES voyages(id),
   
-  photos_id int, FK, required
+  FOREIGN KEY(photos_id) REFERENCES photos(id),
   
-  description text, default: ""
+  description TEXT DEFAULT ""
+
+  );
 
 manuals table
 .............
+
+ To Do: complet this after implementing voyages.
 
   id int, PK etc
   
@@ -255,7 +313,7 @@ Each voyage in the list links to that voyage detail page (all users)
 
 Each voyage in the list has a link to delete and (logged in users)
 
-data: n[depart_from, arrive_at, depart_time]
+data: n[id, depart_from, arrive_at, depart_time]
 
 Voyage Detail Page
 ,,,,,,,,,,,,,,,,,,,,,,,
@@ -268,7 +326,7 @@ Has a edit photos icon. On clicking all photos + description have a delete link 
 
 Has a edit icon. On clicking presents create-update.pug page with values in input fields (logged in users)
 
-data: depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]
+data: id, depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]
 
 Create and Update Voyage
 ,,,,,,,,,,,,,,,,,,,,,,,,
@@ -279,7 +337,7 @@ Shows form for creating a voyage detail page.
 
 fields for user entry or data from db:
 
-depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]
+id(update only), depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]
 
 Table
 ,,,,,
@@ -301,12 +359,12 @@ views are in `views/voyages/`
 /voyages                          voyages.        /views/voyages
 =========================         ==============  ============================
 GET  /create                      in route        /create-update.pug
-POST /create                      .create-update  REDIR: /voyages/:depart_time
-GET  /:depart_time/delete         in route        REDIR: /voyages
-GET  /:depart_time/update         in route        /create-update.pug
-POST /:depart_time/update         .create-update  REDIR: /voyages/:depart_time
+POST /create                      .create-update  REDIR: /voyages/:id
+GET  /:id/delete                  in route        REDIR: /voyages
+GET  /:id/update                  in route        /create-update.pug
+POST /:id/update                  .create-update  REDIR: /voyages/:id
 GET  /                            in route        /list.pug
-GET  /:depart_time                in route        /detail.pug
+GET  /:id                         in route        /detail.pug
 =========================         ==============  ============================
 
 To Do

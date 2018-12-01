@@ -158,38 +158,79 @@
 <div class="section" id="sqlite-database">
 <h2>SQLite Database<a class="headerlink" href="#sqlite-database" title="Permalink to this headline">¶</a></h2>
 <p>All fields should be Not Null (use defaults).</p>
-<div class="section" id="voyagelogs-table">
-<h3>voyageLogs table<a class="headerlink" href="#voyagelogs-table" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="voyages-table">
+<h3>voyages table<a class="headerlink" href="#voyages-table" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><p>id int, PK etc</p>
-<p>depart_from text, required</p>
-<p>arrive_at text, required</p>
-<p>depart_time ???, required</p>
-<p>description text, default: &#8220;&#8221;</p>
+<div><p>CREATE TABLE voyages (</p>
+<p>id INTEGER PRIMARY KEY,</p>
+<p>depart_from TEXT NOT NULL,</p>
+<p>arrive_at TEXT NOT NULL,</p>
+<p>depart_time TEXT NOT NULL,</p>
+<p>arrive_time TEXT DEFAULT &#8220;&#8221;,</p>
+<p>distance INTEGER,</p>
+<p>description TEXT DEFAULT &#8220;&#8221;</p>
+<p>);</p>
+<p>Note: dates should be inserted as: YYYY-MM-DD HH:MM</p>
+<p>INSERT INTO voyages (</p>
+<blockquote>
+<div><p>depart_from, arrive_at, depart_time, arrive_time, distance, description</p>
+<p>)</p>
+</div></blockquote>
+<p>VALUES</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>(</dt>
+<dd><p class="first">&#8220;Old Mill Creek, River Dart&#8221;,</p>
+<p>&#8220;Mount Edgecombe, Pylmouth&#8221;,</p>
+<p>&#8220;2016-07-21 08:00&#8221;,</p>
+<p>&#8220;2016-07-21 20:00&#8221;,</p>
+<p>35,</p>
+<p class="last">&#8220;Motored all the way with light head winds. Anchored. Got in a muddle anchoring much to the annoyance of fisherman on the shore who I got rather close to....&#8221;</p>
+</dd>
+</dl>
+<p>)</p>
+<p>(</p>
+<blockquote>
+<div><p>&#8220;Mount Edgecombe, Plymouth&#8221;,</p>
+<p>&#8220;Portscatho&#8221;,</p>
+<p>&#8220;2016-07-22 11:00&#8221;,</p>
+<p>&#8220;2016-07-22 20:00&#8221;,</p>
+<p>35,</p>
+<p>&#8220;Motored all the way with roller reefing jib out. Anchored&#8221;</p>
+</div></blockquote>
+<p>);</p>
+</div></blockquote>
 </div></blockquote>
 </div>
 <div class="section" id="photos-table">
 <h3>photos table<a class="headerlink" href="#photos-table" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><p>id int, PK etc</p>
-<p>file_name text, required</p>
+<div><p>CREATE TABLE photos (</p>
+<p>id INTEGER PRIMARY KEY,</p>
+<p>file_name TEXT NOT NULL</p>
+<p>);</p>
 </div></blockquote>
 </div>
-<div class="section" id="voyagelogs-photos-table">
-<h3>voyageLogs_photos table<a class="headerlink" href="#voyagelogs-photos-table" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="voyages-photos-table">
+<h3>voyages_photos table<a class="headerlink" href="#voyages-photos-table" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><p>voyageLogs_id int, FK, required</p>
-<p>photos_id int, FK, required</p>
-<p>description text, default: &#8220;&#8221;</p>
+<div><p>CREATE TABLE voyages_photos (</p>
+<p>FOREIGN KEY(voyages_id) REFERENCES voyages(id),</p>
+<p>FOREIGN KEY(photos_id) REFERENCES photos(id),</p>
+<p>description TEXT DEFAULT &#8220;&#8221;</p>
+<p>);</p>
 </div></blockquote>
 </div>
 <div class="section" id="manuals-table">
 <h3>manuals table<a class="headerlink" href="#manuals-table" title="Permalink to this headline">¶</a></h3>
 <blockquote>
+<div><p>To Do: complet this after implementing voyages.</p>
+<blockquote>
 <div><p>id int, PK etc</p>
 <p>title text, required</p>
 <p>description text, default: &#8220;&#8221;</p>
 <p>file_name text, default: &#8220;&#8221;</p>
+</div></blockquote>
 </div></blockquote>
 </div>
 <div class="section" id="documents-table">
@@ -247,7 +288,7 @@
 <p>Shows list of all voyages in descending order of depart_time (unique in database).</p>
 <p>Each voyage in the list links to that voyage detail page (all users)</p>
 <p>Each voyage in the list has a link to delete and (logged in users)</p>
-<p>data: n[depart_from, arrive_at, depart_time]</p>
+<p>data: n[id, depart_from, arrive_at, depart_time]</p>
 </div>
 <div class="section" id="voyage-detail-page">
 <h4>Voyage Detail Page<a class="headerlink" href="#voyage-detail-page" title="Permalink to this headline">¶</a></h4>
@@ -255,14 +296,14 @@
 <p>Shows detail for a voyage.</p>
 <p>Has a edit photos icon. On clicking all photos + description have a delete link (logged in users)</p>
 <p>Has a edit icon. On clicking presents create-update.pug page with values in input fields (logged in users)</p>
-<p>data: depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]</p>
+<p>data: id, depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]</p>
 </div>
 <div class="section" id="create-and-update-voyage">
 <h4>Create and Update Voyage<a class="headerlink" href="#create-and-update-voyage" title="Permalink to this headline">¶</a></h4>
 <p><cite>views/voyages/create-update.pug</cite></p>
 <p>Shows form for creating a voyage detail page.</p>
 <p>fields for user entry or data from db:</p>
-<p>depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]</p>
+<p>id(update only), depart_from, arrive_at, depart_time, description, n[photo_file_n, photo_description_n]</p>
 </div>
 <div class="section" id="id2">
 <h4>Table<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
@@ -291,25 +332,25 @@
 </tr>
 <tr class="row-odd"><td>POST /create</td>
 <td>.create-update</td>
-<td>REDIR: /voyages/:depart_time</td>
+<td>REDIR: /voyages/:id</td>
 </tr>
-<tr class="row-even"><td>GET  /:depart_time/delete</td>
+<tr class="row-even"><td>GET  /:id/delete</td>
 <td>in route</td>
 <td>REDIR: /voyages</td>
 </tr>
-<tr class="row-odd"><td>GET  /:depart_time/update</td>
+<tr class="row-odd"><td>GET  /:id/update</td>
 <td>in route</td>
 <td>/create-update.pug</td>
 </tr>
-<tr class="row-even"><td>POST /:depart_time/update</td>
+<tr class="row-even"><td>POST /:id/update</td>
 <td>.create-update</td>
-<td>REDIR: /voyages/:depart_time</td>
+<td>REDIR: /voyages/:id</td>
 </tr>
 <tr class="row-odd"><td>GET  /</td>
 <td>in route</td>
 <td>/list.pug</td>
 </tr>
-<tr class="row-even"><td>GET  /:depart_time</td>
+<tr class="row-even"><td>GET  /:id</td>
 <td>in route</td>
 <td>/detail.pug</td>
 </tr>
@@ -367,9 +408,9 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#sqlite-database">SQLite Database</a><ul>
-<li><a class="reference internal" href="#voyagelogs-table">voyageLogs table</a></li>
+<li><a class="reference internal" href="#voyages-table">voyages table</a></li>
 <li><a class="reference internal" href="#photos-table">photos table</a></li>
-<li><a class="reference internal" href="#voyagelogs-photos-table">voyageLogs_photos table</a></li>
+<li><a class="reference internal" href="#voyages-photos-table">voyages_photos table</a></li>
 <li><a class="reference internal" href="#manuals-table">manuals table</a></li>
 <li><a class="reference internal" href="#documents-table">documents table</a></li>
 </ul>
