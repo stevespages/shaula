@@ -191,5 +191,24 @@ documents table
 ### Home Page. `/`
 Route | Controller | View
 ----- | ---------- | ----
-/ | in route | index.pug
+GET/ | in route | index.pug
 
+### Voyages. `/voyages`
+Route | Controller | View
+----- | ---------- | ----
+**/voyages** | **voyages.** | **/views/voyages**
+GET/create | in route | /create-update.pug
+POST/create |.create_update | REDIR: /voyages/:id
+GET/:id/delete | in route | REDIR: /voyages
+GET/:id/update | in route | /create-update.put
+POST/:id/update | .create_update | REDIR: /voyages/:id
+GET/ | in route | /list.pug
+GET/:id | in route | /detail.pug
+
+## To Do
+Complete sections on *manuals* and *documents* after implementing the *voyages* section
+
+### Manuals. `/manuals`
+Route | Controller | View
+----- | ---------- | ----
+**/manuals** | **manuals.** | **/view/manuals**
