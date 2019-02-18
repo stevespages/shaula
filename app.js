@@ -13,6 +13,9 @@ var manualsRouter = require('./routes/manuals');
 var documentsRouter = require('./routes/documents');
 var usersRouter = require('./routes/users');
 
+// Heroku will assign value to port.env.PORT (an environmental variable)
+// const PORT = process.env.PORT || 3000;
+
 var app = express();
 
 // view engine setup
@@ -47,6 +50,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000);
+app.listen(PORT);
 
 module.exports = app;
