@@ -21,7 +21,7 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-	res.render('login');
+	res.render('login', { user: req.session.userId });
 });
 
 router.post('/login', function(req, res, next) {

@@ -42,7 +42,7 @@ router.get('/',
 		const sql = `SELECT * FROM voyages`;
 		db.all(sql, (err, rows) => {
 			console.log(err);
-			res.render('./voyages/list.pug', { voyages: rows });
+			res.render('./voyages/list.pug', { user: req.session.userId, voyages: rows });
 		})
 	}
 );
