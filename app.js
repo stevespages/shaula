@@ -4,6 +4,7 @@ var sqlite3 = require('sqlite3').verbose();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
 const db = new sqlite3.Database('shaula.db');
 
@@ -17,6 +18,12 @@ var usersRouter = require('./routes/users');
 const PORT = process.env.PORT || 3000;
 
 var app = express();
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+	secret: 'keyboard cat'
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
