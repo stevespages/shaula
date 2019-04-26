@@ -1,25 +1,25 @@
 # shaula
-Website for the yacht, Shaula. This site was made using Express Application Generator.
+Website for the yacht, Shaula. This site was made using Express Application Generator. As the website is developed and maintained changes are uploaded to Github which automatically replaces the version of the website hosted at Heroku.
 
 ## Overview
-This website describes Shaula. It will enable voyages to be logged, documents to be uploaded and manuals to be uploaded. The log, ,documents and manuals will be editable. Editing the site will be restricted to password protected users. This readme document describes the organization of the site.
+This website describes Shaula. It will enable voyages to be logged and documents and manuals to be uploaded to be uploaded. The log, ,documents and manuals will be editable. Editing the site will be restricted to a single password protected user who will be the owner of the yacht. This readme document describes the organization of the site.
 
 ## Navigation
 * Home
-* Login
-* Voyage
+* Login. When logged in replaced by Sign Out
+* Voyages
 * Manuals
-* Documents (display to logged in users only)
+* Documents
 
 ## Views
-All views will have the website title, a header photo of Shaula and navigation.
+All views will have the website title, a header logo of Shaula and navigation.
 
 ### Home. `/`
 Short introduction to the yacht with additional photo(s) of Shaula.
 Links (all users): Login
 
 ### Login. `/login`
-There will be one administrator account. The administrator can create new editor accounts. Editor accounts can do everything the administrator account can do except create editor accounts. Login will require email and password. If password forgotten then send email and allow new password to be generated on answering that email. User should then have to create a new password to be allowed to proceed.
+There will be one administrator account. Login will require email and password. 
 
 ### List of Log Entries. `/voyages`
 Short description of voyage logs.
