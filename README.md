@@ -2,7 +2,7 @@
 Website for the yacht, Shaula. This site was made using Express Application Generator. As the website is developed and maintained changes are uploaded to Github which automatically replaces the version of the website hosted at Heroku.
 
 ## Overview
-This website describes Shaula. It will enable voyages to be logged and documents and manuals to be uploaded to be uploaded. The log, ,documents and manuals will be editable. Editing the site will be restricted to a single password protected user who will be the owner of the yacht. This readme document describes the organization of the site.
+This website describes Shaula. It will enable voyages to be logged and documents and manuals to be uploaded. The voyages log, documents and manuals will be editable. Editing the site will be restricted to a single password protected user who will be the owner of the yacht. This readme document describes the organization of the site.
 
 ## Navigation
 * Home
