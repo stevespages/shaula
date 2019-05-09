@@ -45,7 +45,7 @@ router.post('/login', function(req, res, next) {
 });
 
 router.get('/any-route', function(req, res, next) {
-	res.send('Any old route');
+	res.send(process.env.MY_ENV_VAR);
 });
 
 module.exports = router;
